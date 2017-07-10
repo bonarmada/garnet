@@ -13,16 +13,19 @@ import com.bombon.garnet.dagger.module.NetworkModule;
 
 public class App extends Application {
 
+    private AppComponent component;
+
     @Override
     public void onCreate() {
         super.onCreate();
 
-        AppComponent component = DaggerAppComponent.builder()
+        component = DaggerAppComponent.builder()
                 .contextModule(new ContextModule(this))
                 .networkModule(new NetworkModule(Constants.BASE_URL))
                 .build();
-
-
     }
 
+    public AppComponent getComponent() {
+        return component;
+    }
 }

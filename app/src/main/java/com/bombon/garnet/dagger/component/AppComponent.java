@@ -1,8 +1,7 @@
 package com.bombon.garnet.dagger.component;
 
 import com.bombon.garnet.MainActivity;
-import com.bombon.garnet.dagger.module.ContextModule;
-import com.bombon.garnet.dagger.module.PostServiceModule;
+import com.bombon.garnet.dagger.module.RemoteModule;
 import com.bombon.garnet.dagger.scope.AppScope;
 
 import dagger.Component;
@@ -12,7 +11,7 @@ import dagger.Component;
  */
 
 @AppScope
-@Component(modules = {ContextModule.class, PostServiceModule.class})
+@Component(modules = RemoteModule.class)
 
 public interface AppComponent {
     void inject(MainActivity activity);

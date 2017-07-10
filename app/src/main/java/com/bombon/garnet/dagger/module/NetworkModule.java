@@ -1,6 +1,5 @@
 package com.bombon.garnet.dagger.module;
 
-import android.app.Application;
 import android.content.Context;
 
 import com.bombon.garnet.dagger.scope.AppScope;
@@ -10,7 +9,6 @@ import com.squareup.picasso.Picasso;
 
 import dagger.Module;
 import dagger.Provides;
-import okhttp3.Cache;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
@@ -22,7 +20,7 @@ import timber.log.Timber;
  * Created by Vaughn on 6/7/17.
  */
 
-@Module
+@Module(includes = {GsonModule.class, ContextModule.class})
 public class NetworkModule {
     String mBaseUrl;
 
@@ -41,20 +39,12 @@ public class NetworkModule {
         });
     }
 
-    @Provides
-    @AppScope
-    Cache provideHttpCache(Application application) {
-        int cacheSize = 10 * 1024 * 1024;
-        Cache cache = new Cache(application.getCacheDir(), cacheSize);
-        return cache;
-    }
 
     @Provides
     @AppScope
-    OkHttpClient provideOkhttpClient(HttpLoggingInterceptor httpLoggingInterceptor, Cache cache) {
+    OkHttpClient provideOkhttpClient(HttpLoggingInterceptor httpLoggingInterceptor) {
         return new OkHttpClient.Builder()
                 .addInterceptor(httpLoggingInterceptor)
-                .cache(cache)
                 .build();
     }
 

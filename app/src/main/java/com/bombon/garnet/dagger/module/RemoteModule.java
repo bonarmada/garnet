@@ -1,7 +1,7 @@
 package com.bombon.garnet.dagger.module;
 
 import com.bombon.garnet.dagger.scope.AppScope;
-import com.bombon.garnet.service.PostService;
+import com.bombon.garnet.dagger.remote.PostRemote;
 
 import dagger.Module;
 import dagger.Provides;
@@ -12,10 +12,10 @@ import retrofit2.Retrofit;
  */
 
 @Module(includes = NetworkModule.class)
-public class PostServiceModule {
+public class RemoteModule {
     @Provides
     @AppScope
-    PostService providePostService(Retrofit retrofit){
-        return retrofit.create(PostService.class);
+    PostRemote providePostRemote(Retrofit retrofit){
+        return retrofit.create(PostRemote.class);
     }
 }
