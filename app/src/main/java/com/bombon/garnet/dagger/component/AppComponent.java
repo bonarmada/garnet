@@ -1,6 +1,6 @@
 package com.bombon.garnet.dagger.component;
 
-import com.bombon.garnet.MainActivity;
+import com.bombon.garnet.activity.MainActivity;
 import com.bombon.garnet.dagger.module.RemoteModule;
 import com.bombon.garnet.dagger.scope.AppScope;
 
